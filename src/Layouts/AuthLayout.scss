@@ -1,0 +1,26 @@
+.auth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    flex-direction: column;
+
+    &-header{
+        &-logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-title{
+            display: flex;
+            justify-self: center;
+            align-items: center;
+        }
+    }
+
+    &-main{
+        width: 400px;
+        // max-width: 300px;
+    }
+}
