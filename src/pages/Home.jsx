@@ -1,29 +1,34 @@
 import { Button } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Test from "../apis/test";
 import { changeValue } from "../features/test/testSlice";
+import useAuth from "../hooks/useAuth";
 
 function Home() {
-    const valueTest = useSelector(state => state.test.value);
+    // const valueTest = useSelector(state => state.test.value);
+    const [value, setValue] = useState();
     const dispatch = useDispatch();
+    const {token, user} = useAuth();
 
     const testApi = async () => {
         let res = await Test.getTest();
         console.log(res);
     }
 
-    useEffect(() => {
-        dispatch(changeValue("adjgkjdskg"))
 
-        testApi()
+    useEffect(() => {
+        // dispatch(changeValue("adjgkjdskg"))
+
+        // testApi()
     }, [])
     return ( 
-        <div>
-            <h2>Home</h2>
-            {valueTest}
+        <div style={{height: "1000px", display:"flex", alignItems:"flex-end"}}>
 
-            <Button variant="contained">Hello World</Button>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/IMG_logo_%282017%29.svg/330px-IMG_logo_%282017%29.svg.png"
+                 alt=""
+                loading="lazy"
+            />
         </div>
      );
 }
