@@ -14,12 +14,13 @@ function useAuth(permission_code = null) {
     
         if(permission_code) {
             let checkPermission = false;
-            permissions.forEach(element => {
-                if(element.code === permission_code) {
-                    checkPermission = true;
-                }
-            });
-    
+            if(permissions){
+                permissions.forEach(element => {
+                    if(element.code === permission_code) {
+                        checkPermission = true;
+                    }
+                });
+            }
             if(!checkPermission) {
                 navigate('/')
             }

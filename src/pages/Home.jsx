@@ -10,6 +10,7 @@ function Home() {
     const [value, setValue] = useState();
     const dispatch = useDispatch();
     const {token, user} = useAuth();
+    const permissions = useSelector(state => state.auth.permissions);
 
     const testApi = async () => {
         let res = await Test.getTest();
@@ -18,9 +19,7 @@ function Home() {
 
 
     useEffect(() => {
-        // dispatch(changeValue("adjgkjdskg"))
-
-        // testApi()
+        // console.log(permissions);
     }, [])
     return ( 
         <div style={{height: "1000px", display:"flex", alignItems:"flex-end"}}>
