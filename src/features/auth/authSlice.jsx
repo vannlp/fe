@@ -21,10 +21,19 @@ export const authSlice = createSlice({
         },
         setToken: (state, action) => {
             state.token = action.payload;
+            if(!state.token) {
+                localStorage.removeItem('token')
+                return;
+            }
             localStorage.setItem('token', state.token)
         },
         setUser: (state, action) => {
             state.user = action.payload;
+
+            if(!state.user) {
+                localStorage.removeItem('user')
+                return;
+            }
             localStorage.setItem('user', JSON.stringify(state.user));
         },
     }

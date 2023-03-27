@@ -21,6 +21,19 @@ const Auth = {
         return api.get(url, {
             headers: headers
         });
+    },
+    
+    checkToken: ({token}) => {
+        const url = "/api/check-token";
+
+        let headers = {};
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`}
+        }
+
+        return api.get(url, {
+            headers: headers
+        });
     }
 }
 

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
-import './App.scss';
 import { BrowserRouter, RouterProvider } from "react-router-dom";
 import { router } from './router';
 import { useDispatch, useSelector } from 'react-redux';
 import Session from './apis/Session';
-import { setPermission, setSession } from './features/auth/authSlice';
+import { setPermission, setSession, setToken, setUser } from './features/auth/authSlice';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Auth from './apis/Auth';
 
+import './App.scss';
 function App() {
   const session_id = useSelector(state => state.auth.session_id);
   const token = useSelector(state => state.auth.token);
@@ -42,8 +42,22 @@ function App() {
     }
   }
 
+  const handleCheckToken = async () => {
+    try {
+      if(token) {
+        let res = await Auth.checkToken({token: token});
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      dispatch(setToken(null));
+      dispatch(setUser(null));
+      window.location.reload();
+    }
+  }
+
   useEffect(() => {
     handleSession();
+    handleCheckToken();
   }, [])
 
   useEffect(() => {
