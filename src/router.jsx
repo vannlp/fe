@@ -4,6 +4,7 @@ import Layout from "./Layouts/Layout";
 import Login from "./pages/Auth/Login";
 import Home from "./pages/Home";
 import Role from "./pages/Role/Role";
+import PermissionPage from "./pages/Role/PermissionPage";
 
 
 export const router = createBrowserRouter(
@@ -13,6 +14,7 @@ export const router = createBrowserRouter(
           <Route element={<Home />} index />
           <Route path="/phan-quyen">
             <Route path="role" element={<Role />} />
+            <Route path="permission" element={<PermissionPage />} />
           </Route>
         </Route>
 

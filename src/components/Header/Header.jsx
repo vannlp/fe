@@ -16,7 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 const pages = [];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function Header() {
+const Header = ({style, sx}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -36,7 +36,7 @@ function Header() {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={12} style={style}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

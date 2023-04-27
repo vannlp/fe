@@ -56,6 +56,7 @@ const data = [
     icon: <PermIdentity />,  
     submenus: [      
         { id: 2.1, name: 'Role', link: "/phan-quyen/role" },      
+        { id: 2.2, name: 'Permission', link: "/phan-quyen/permission" },      
     ],
   },
 //   {
@@ -82,7 +83,10 @@ function SiderBar() {
 
 
     return ( 
-        <List component="nav" style={{ borderRight: "2px solid #ccc", minHeight: "100%" }}>
+        <List component="nav" 
+            // sx={{position: "sticky"}} 
+            style={{ borderRight: "2px solid #ccc", minHeight: "100%" }}
+        >
         {data.map((menu) => (
             <React.Fragment key={menu.id}>
                 <ListItem

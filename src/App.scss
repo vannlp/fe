@@ -8,6 +8,34 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
-.main{
-    min-height: 100vh;
+// .main{
+//     // min-height: 100vh;
+// }
+
+.admin-main{
+    padding: 20px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+}
+
+#root{
+    height: 100vh;
+}
+
+.text-area{
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentColor;
+    // padding: 4px 0 5px;
+    border: 1px solid;
+    // box-sizing: content-box;
+    // background: none;
+    // // height: 1.4375em;
+    // margin: 0;
+    // display: block;
+    // min-width: 0;
+    width: 100%;
+    padding: 8.5px 14px;
 }

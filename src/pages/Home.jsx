@@ -22,7 +22,10 @@ function Home() {
         // console.log(permissions);
     }, [])
     return ( 
-        <div style={{height: "1000px", display:"flex", alignItems:"flex-end"}}>
+        <div 
+        style={{display:"flex", alignItems:"flex-end", height: "1000px"}}
+        
+        >
 
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/IMG_logo_%282017%29.svg/330px-IMG_logo_%282017%29.svg.png"
                  alt=""
