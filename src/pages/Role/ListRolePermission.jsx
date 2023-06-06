@@ -15,12 +15,14 @@ const schema = yup.object().shape({
 
 
 
-function ListRolePermission({style, code, token}) {
+function ListRolePermission({style, code, token, user}) {
     const [loadingIn, setLoadingIn] = useState(true);
     const [styleState, setStyState] = useState({
         ...style,
         width: 1000,
-        bgcolor: '#eee'
+        bgcolor: '#eee',
+        maxHeight: 500,
+        overflowY: 'scroll',
     });
     const [list, setList] = useState([]);
     const { control,register, handleSubmit, setError, formState: { errors }, reset } = useForm({
@@ -68,8 +70,24 @@ function ListRolePermission({style, code, token}) {
         }
     }
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        try {
+            
+            let listPermission = data.listPermission.map((item, index) => {
+                return item.id;
+            });
+            let dataRes = {
+                'role_id': user.role_id,
+                'listPermission': listPermission
+            };
+
+            let res = await PermissonApi.addRolePermission({token: token, data: dataRes});
+
+            toast.success(res.data.message);
+        } catch (error) {
+            let message = error.response.data.message;
+            toast.error(message);
+        }
     }
 
     const onChangeAuto = async (event) => {
@@ -107,7 +125,6 @@ function ListRolePermission({style, code, token}) {
     return (
         <Paper sx={styleState}>
             <Typography variant="h6" sx={{marginBottom: "10px", textTransform: "uppercase"}}>Phân quyền {code}</Typography>
-
             <form  method="post" onSubmit={handleSubmit(onSubmit)} style={{marginBottom: "15px"}}>
                 <Grid container>
                     <Grid xs={10}>

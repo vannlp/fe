@@ -34,7 +34,7 @@ function Role() {
     const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();
 
 
-    const {token, user} = useAuth();
+    const {token, user} = useAuth('LISTROLE');
 
     const start = async () => {
         setLoading(true);
@@ -124,7 +124,6 @@ function Role() {
             <AdminTitle title="Phân quyền">
                 <Button onClick={() => handleOpen('addModal')} variant="contained" color="primary">Thêm mới</Button>
             </AdminTitle>
-
                 
             <BasicTable tableHead={["id", "code", 'name']} pagination={pagination} onChangePagination={onChangePagination}>
                 <>
@@ -197,6 +196,7 @@ function Role() {
                         style={style}
                         code={code}
                         token={token}
+                        user={user}
                     />:<></>
                 }
             </Modal>

@@ -5,6 +5,8 @@ import Login from "./pages/Auth/Login";
 import Home from "./pages/Home";
 import Role from "./pages/Role/Role";
 import PermissionPage from "./pages/Role/PermissionPage";
+import ListUser from "./pages/User/ListUser";
+import UpdateUser from "./pages/User/UpdateUser";
 
 
 export const router = createBrowserRouter(
@@ -15,6 +17,11 @@ export const router = createBrowserRouter(
           <Route path="/phan-quyen">
             <Route path="role" element={<Role />} />
             <Route path="permission" element={<PermissionPage />} />
+          </Route>
+
+          <Route path="/nguoi-dung">
+            <Route path="list" element={<ListUser />} />
+            <Route path=":id" element={<UpdateUser />} />
           </Route>
         </Route>
 

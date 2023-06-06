@@ -9,7 +9,7 @@ export const interfaceSlice = createSlice({
     initialState,
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
-        setLoading: (state, action) => {
+        setLoadingGlobal: (state, action) => {
             let is_loading = action.payload;
             state.loadingGlobal = is_loading
         }
@@ -17,6 +17,6 @@ export const interfaceSlice = createSlice({
     
 });
 
-export const { setLoading } = interfaceSlice.actions;
+export const { setLoadingGlobal } = interfaceSlice.actions;
 
 export default interfaceSlice.reducer;

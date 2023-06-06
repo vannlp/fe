@@ -42,7 +42,7 @@ function PermissionPage() {
     });
 
 
-    const {token, user} = useAuth();
+    const {token, user} = useAuth('LISTPERMISSION');
 
     const start = async () => {
         setLoading(true);

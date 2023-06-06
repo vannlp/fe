@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     session_id: localStorage.getItem('session_id') ,
-    permissions: null,
+    permissions: [],
     token: localStorage.getItem('token'),
     user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
 };

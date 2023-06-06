@@ -11,10 +11,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import Auth from './apis/Auth';
 
 import './App.scss';
+import Loading from './components/Loading/Loading';
 function App() {
   const session_id = useSelector(state => state.auth.session_id);
   const token = useSelector(state => state.auth.token);
   const permissions = useSelector(state => state.auth.permissions);
+  const loadingGlobal = useSelector(state => state.interface.loadingGlobal);
   const dispatch = useDispatch();
   const handleSession = async () => {
     try {
@@ -31,9 +33,11 @@ function App() {
   const handleGetPermission = async () => {
     try {
       if(token) {
-        if(!permissions){
+        // console.log(permissions.length );
+        if(permissions.length <= 0){
           let res = await Auth.permission({token: token});
           let dataRes = res.data.data;
+          // console.log(dataRes);
           dispatch(setPermission(dataRes));
         }
       }
@@ -69,6 +73,7 @@ function App() {
       <RouterProvider router={router} />
       
       <ToastContainer />
+      {loadingGlobal &&  <Loading />} 
     </>
   );
 }

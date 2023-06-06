@@ -1,44 +1,53 @@
 import {api} from "./api"
 
-const PermissonApi = {
-    listAdmin:  ({token,params}) => {
+const UserApi = {
+    list: ({token, params}) => {
         let headers = {};
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`}
         }
-        return api.get('/api/permission/list-admin', {
+        return api.get('/api/user/list', {
             headers: headers,
             params: params
         });
     },
-    add: ({token, data}) => {
+
+    create: ({token, data}) => {
         let headers = {};
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`}
         }
-        return api.post('/api/permission/add',data, {
+        return api.post('/api/user/create',data, {
             headers: headers,
         });
     },
-    listPermissionByRole: ({token, params}) => {
+    
+    edit: ({token, id ,data}) => {
         let headers = {};
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`}
         }
-        return api.get('/api/permission/list-permission-by-role', {
+
+        if(!id) {
+            throw new Error("Vui lòng nhập id");
+        }
+
+        return api.put(`/api/user/edit/${id}`,data, {
             headers: headers,
-            params: params
         });
     },
-    addRolePermission: ({token, data}) => {
+
+    getById: ({token, id}) => {
         let headers = {};
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`}
         }
-        return api.post('/api/permission/add-role-permission',data, {
-            headers: headers,
+
+        return api.get(`/api/user/${id}`, {
+            headers: headers
         });
     }
+    
 }
 
-export default PermissonApi;
+export default UserApi;

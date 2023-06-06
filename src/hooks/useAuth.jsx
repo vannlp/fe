@@ -7,22 +7,27 @@ function useAuth(permission_code = null) {
     const token = useSelector(state => state.auth.token);
     const user = useSelector(state => state.auth.user);
     const permissions = useSelector(state => state.auth.permissions);
+    // console.log(permissions);
     useEffect(() => {
         if (!token) {
             navigate("/login");
         }
     
+        
+
         if(permission_code) {
-            let checkPermission = false;
-            if(permissions){
-                permissions.forEach(element => {
-                    if(element.code === permission_code) {
-                        checkPermission = true;
-                    }
-                });
-            }
-            if(!checkPermission) {
-                navigate('/')
+            if(user && user.role_code != 'SUPERADMIN'){
+                let checkPermission = false;
+                if(permissions){
+                    permissions.forEach(element => {
+                        if(element.permission_code === permission_code) {
+                            checkPermission = true;
+                        }
+                    });
+                }
+                if(!checkPermission) {
+                    navigate('/')
+                }
             }
         } 
     }, [])

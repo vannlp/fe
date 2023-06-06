@@ -12,6 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useDispatch } from 'react-redux';
+import { setToken, setUser } from '../../features/auth/authSlice';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const pages = [];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -19,6 +22,8 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Header = ({style, sx}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -34,6 +39,12 @@ const Header = ({style, sx}) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogout = () => {
+    dispatch(setToken(null));
+    dispatch(setUser(null));
+    navigate("/login");
+  }
 
   return (
     <AppBar position="sticky" sx={12} style={style}>
@@ -147,11 +158,14 @@ const Header = ({style, sx}) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {/* {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography onClick={() => handleLogout()} textAlign="center">Logout</Typography>
+                </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
